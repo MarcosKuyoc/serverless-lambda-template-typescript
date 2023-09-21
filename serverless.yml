@@ -1,0 +1,22 @@
+service: api-typescript-serverless
+frameworkVersion: '3'
+
+custom:
+  serverlessPluginTypescript:
+    tsConfigFileLocation: './tsconfig.build.json'
+
+provider:
+  name: aws
+  runtime: nodejs16.x
+
+functions:
+  hello:
+    handler: src/handler.hello
+    events:
+      - httpApi:
+          path: hello
+          method: get
+
+plugins:
+  - serverless-plugin-typescript
+  - serverless-offline
